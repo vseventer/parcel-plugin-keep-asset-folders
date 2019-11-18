@@ -1,0 +1,23 @@
+{
+  "name": "parcel-plugin-keep-asset-folders",
+  "version": "0.1.0",
+  "description": "Keep assets original directory structure in Parcel's output.",
+  "keywords": [
+    "parcel",
+    "parcel-plugin",
+    "asset",
+    "folders"
+  ],
+  "homepage": "https://github.com/vseventer/parcel-plugin-keep-asset-folders",
+  "license": "MIT",
+  "author": "Mark van Seventer <mark@vseventer.com> (https://www.vseventer.com)",
+  "main": "./index.js",
+  "repository": "github:vseventer/parcel-plugin-keep-asset-folders",
+  "dependencies": {},
+  "engines": {
+    "node": ">=6"
+  },
+  "peerDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
