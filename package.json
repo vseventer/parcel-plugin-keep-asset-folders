@@ -13,7 +13,9 @@
   "author": "Mark van Seventer <mark@vseventer.com> (https://www.vseventer.com)",
   "main": "./index.js",
   "repository": "github:vseventer/parcel-plugin-keep-asset-folders",
-  "dependencies": {},
+  "dependencies": {
+    "debug": "^4.1.1"
+  },
   "engines": {
     "node": ">=6"
   },

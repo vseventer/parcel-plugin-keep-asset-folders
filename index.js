@@ -1,5 +1,8 @@
 // @see https://parceljs.org/plugins.html
 
+// Package modules.
+const debug = require('debug')('parcel:keep-asset-folders');
+
 // Standard lib.
 const path = require('path');
 
@@ -16,7 +19,11 @@ let patchBundle = (bundle) => {
 
     // Assets are always stored directly in the output directory.
     if (result.indexOf('/') === -1) {
-      return path.join(path.dirname(this.entryAsset.relativeName), result);
+      const updatedResult = path.join(path.dirname(this.entryAsset.relativeName), result);
+      if (result !== updatedResult) { // Files in source root don't need updating.
+        debug('Moved asset: %s => %s', result, updatedResult);
+        return updatedResult;
+      }
     }
     return result; // Return original.
   };

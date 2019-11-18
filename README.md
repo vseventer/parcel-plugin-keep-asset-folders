@@ -41,6 +41,8 @@ Depending on which package manager you use, either:
 ## Usage
 Parcel automatically picks up on this plugin, and no further action is required on your part.
 
+You can see what assets are updated by enabling debug mode: `$ DEBUG=parcel:keep-asset-folders parcel ...`.
+
 ## Changelog
 See the [Changelog](./CHANGELOG.md) for a list of changes.
 
