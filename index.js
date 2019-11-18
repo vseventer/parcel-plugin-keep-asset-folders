@@ -18,7 +18,7 @@ let patchBundle = (bundle) => {
     const result = original.call(this, ...args);
 
     // Assets are always stored directly in the output directory.
-    if (result.indexOf('/') === -1) {
+    if (result.indexOf('/') === -1 && this.entryAsset) {
       const updatedResult = path.join(path.dirname(this.entryAsset.relativeName), result);
       if (result !== updatedResult) { // Files in source root don't need updating.
         debug('Moved asset: %s => %s', result, updatedResult);
