@@ -17,15 +17,30 @@ let patchBundle = (bundle) => {
     // Run original function.
     const result = original.call(this, ...args);
 
+    // In watch mode, entryAsset is not always available.
+    if (!this.entryAsset) {
+      return result; // Return original.
+    }
+
     // Assets are always stored directly in the output directory.
-    if (result.indexOf('/') === -1 && this.entryAsset) {
+    if (result.indexOf('/') === -1) {
       const updatedResult = path.join(path.dirname(this.entryAsset.relativeName), result);
       if (result !== updatedResult) { // Files in source root don't need updating.
         debug('Moved asset: %s => %s', result, updatedResult);
         return updatedResult;
       }
     }
-    return result; // Return original.
+
+    // Fix trailing dot in extension-less files.
+    // @see https://github.com/parcel-bundler/parcel/issues/3763
+    if (result.slice(-1) === '.' && this.entryAsset.relativeName.indexOf('.') === -1) {
+      const updatedResult = result.slice(0, -1); // Remove dot.
+      debug('Moved asset: %s => %s', result, updatedResult);
+      return updatedResult;
+    }
+
+    // Return original.
+    return result;
   };
 };
 

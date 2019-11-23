@@ -3,6 +3,8 @@
 
 All static assets referenced by [Parcel][parcel] will be outputted in the root directory. This may be what you want, but for many people it is not - see [this](https://github.com/parcel-bundler/parcel/issues/872) collection of GitHub issues. This plugin patches Parcel so that assets keep their original directory structure.
 
+In addition, Parcel does not handle extension-less files (like `CNAME`) very well: it will add a dot to the file name (`CNAME.`). This plugin also fixes this.
+
 **WARNING** This plugin modifies Parcel internals through an undocumented API. Therefore, your website may break if you are not careful when selecting which version of Parcel you are using.
 
 ## Examples
@@ -14,11 +16,13 @@ Take the project structure as outlined below.
 ---  my-amazing-landscape.jpg
 -- logo.png
 - index.html
+- CNAME
 ```
 
 Typically, the build will produce:
 
 ```
+- CNAME.
 - index.html
 - my-amazing-landscape.<hash>.jpg
 - logo.<hash>.png
@@ -30,6 +34,7 @@ With this plugin, the structure is as follows:
 -- 2019
 --- my-amazing-landscape.<hash>.jpg
 -- logo.<hash>.png
+- CNAME
 - index.html
 ```
 
